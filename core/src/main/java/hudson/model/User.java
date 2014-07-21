@@ -543,7 +543,7 @@ public class User extends AbstractModelObject implements AccessControlled, Descr
      * Gets the list of {@link Build}s that include changes by this user,
      * by the timestamp order.
      */
-    @WithBridgeMethods(List.class)
+    // patching for debug
     public RunList getBuilds() {
     	return new RunList<Run<?,?>>(Jenkins.getInstance().getAllItems(Job.class)).filter(new Predicate<Run<?,?>>() {
             @Override public boolean apply(Run<?,?> r) {
