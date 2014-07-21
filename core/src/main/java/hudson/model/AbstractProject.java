@@ -333,7 +333,6 @@ public abstract class AbstractProject<P extends AbstractProject<P,R>,R extends A
         updateTransientActions();
     }
 
-    @WithBridgeMethods(List.class)
     protected DescribableList<Trigger<?>,TriggerDescriptor> triggers() {
         if (triggers == null) {
             triggersUpdater.compareAndSet(this,null,new DescribableList<Trigger<?>,TriggerDescriptor>(this));
@@ -835,7 +834,7 @@ public abstract class AbstractProject<P extends AbstractProject<P,R>,R extends A
      * @param actions
      *      For the convenience of the caller, this array can contain null, and those will be silently ignored.
      */
-    @WithBridgeMethods(Future.class)
+    // patching for debug
     public QueueTaskFuture<R> scheduleBuild2(int quietPeriod, Cause c, Action... actions) {
         return scheduleBuild2(quietPeriod,c,Arrays.asList(actions));
     }
@@ -849,7 +848,6 @@ public abstract class AbstractProject<P extends AbstractProject<P,R>,R extends A
      * @since 1.383
      */
     @SuppressWarnings("unchecked")
-    @WithBridgeMethods(Future.class)
     public QueueTaskFuture<R> scheduleBuild2(int quietPeriod, Cause c, Collection<? extends Action> actions) {
         List<Action> queueActions = new ArrayList<Action>(actions);
         if (c != null) {
@@ -867,7 +865,6 @@ public abstract class AbstractProject<P extends AbstractProject<P,R>,R extends A
      * as deprecated.
      */
     @SuppressWarnings("deprecation")
-    @WithBridgeMethods(Future.class)
     public QueueTaskFuture<R> scheduleBuild2(int quietPeriod) {
         return scheduleBuild2(quietPeriod, new LegacyCodeCause());
     }
@@ -876,7 +873,6 @@ public abstract class AbstractProject<P extends AbstractProject<P,R>,R extends A
      * Schedules a build of this project, and returns a {@link Future} object
      * to wait for the completion of the build.
      */
-    @WithBridgeMethods(Future.class)
     public QueueTaskFuture<R> scheduleBuild2(int quietPeriod, Cause c) {
         return scheduleBuild2(quietPeriod, c, new Action[0]);
     }

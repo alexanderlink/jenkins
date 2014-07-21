@@ -640,7 +640,7 @@ public abstract class Job<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
      * @return never null. The first entry is the latest build.
      */
     @Exported(name="allBuilds",visibility=-2)
-    @WithBridgeMethods(List.class)
+    // patching for debug
     public RunList<RunT> getBuilds() {
         return RunList.fromRuns(_getRuns().values());
     }
@@ -709,7 +709,7 @@ public abstract class Job<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
      * @deprecated
      *      as of 1.372. Should just do {@code getBuilds().byTimestamp(s,e)} to avoid code bloat in {@link Job}.
      */
-    @WithBridgeMethods(List.class)
+    // patching for debug
     public RunList<RunT> getBuildsByTimestamp(long start, long end) {
         return getBuilds().byTimestamp(start,end);
     }

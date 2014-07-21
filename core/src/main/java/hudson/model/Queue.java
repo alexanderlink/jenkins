@@ -928,7 +928,7 @@ public class Queue extends ResourceController implements Saveable {
      * <p>
      * This wakes up one {@link Executor} so that it will maintain a queue.
      */
-    @WithBridgeMethods(void.class)
+    // patching for debug
     public Future<?> scheduleMaintenance() {
         // LOGGER.info("Scheduling maintenance");
         return maintainerThread.submit();
@@ -1377,7 +1377,7 @@ public class Queue extends ResourceController implements Saveable {
          * <p>
          * Just like {@link #id}, the same object tracks various stages of the queue.
          */
-        @WithBridgeMethods(Future.class)
+        // patching for debug
         public QueueTaskFuture<Executable> getFuture() { return future; }
 
         /**

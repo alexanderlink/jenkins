@@ -66,14 +66,14 @@ public class PersistedList<T> extends AbstractList<T> {
         this.owner = owner;
     }
 
-    @WithBridgeMethods(void.class)
+    // patching for debug
     public boolean add(T item) {
         data.add(item);
         _onModified();
         return true;
     }
 
-    @WithBridgeMethods(void.class)
+    // patching for debug
     public boolean addAll(Collection<? extends T> items) {
         data.addAll(items);
         _onModified();

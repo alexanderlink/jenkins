@@ -15,7 +15,7 @@ import jenkins.model.Jenkins;
 public abstract class SettingsProviderDescriptor extends Descriptor<SettingsProvider> {
 
 
-    @WithBridgeMethods(List.class)
+    // patching for debug
     public static DescriptorExtensionList<SettingsProvider,SettingsProviderDescriptor> all() {
         return Jenkins.getInstance().<SettingsProvider,SettingsProviderDescriptor>getDescriptorList(SettingsProvider.class);
     }
