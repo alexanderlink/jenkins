@@ -385,6 +385,7 @@ public abstract class HudsonTestCase extends TestCase implements RootAction {
 
     @Override
     protected void tearDown() throws Exception {
+	  try {
         try {
             if (jenkins!=null) {
                 for (EndOfTestListener tl : jenkins.getExtensionList(EndOfTestListener.class))
@@ -421,6 +422,10 @@ public abstract class HudsonTestCase extends TestCase implements RootAction {
             // see http://bugs.sun.com/view_bug.do?bug_id=4950148
             System.gc();
         }
+	  } catch(Exception e) {
+	    //Don't break test
+	    LOGGER.log(Level.WARNING, "Exception in teardown", e);
+	  }
     }
 
     @Override
